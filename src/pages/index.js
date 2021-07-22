@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
+import BackgroundImage from 'gatsby-background-image';
 import Layout from '../components/Layout';
 import styles from './index.module.css';
 import BlogList from '../components/BlogList';
@@ -12,14 +13,30 @@ export default function IndexPage() {
         title
       }
     }
-  }
-`);
+    markdownRemark(frontmatter: { contentKey: { eq: "indexPage" } }) {
+      frontmatter {
+        tagline
+        heroImage {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    }
+  }`);
+
+  const tagline = data.markdownRemark.frontmatter.tagline;
+  const heroImage = data.markdownRemark.frontmatter.heroImage;
 
   return (
     <Layout>
-      <div id={styles.hero}>
-        <h1>{data.site.siteMetadata.title}</h1>
-      </div>
+      <BackgroundImage 
+        id={styles.hero}
+        fluid={heroImage.childImageSharp.fluid}>
+        <h1>{tagline}</h1>
+      </BackgroundImage>
       <BlogList />
     </Layout>
   );
