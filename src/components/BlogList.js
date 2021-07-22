@@ -1,11 +1,14 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 import BlogPost from './BlogPost';
 
 export default function BlogList() {
 	const data = useStaticQuery(graphql`
 												{
-													allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) 
+													allMarkdownRemark(
+														sort: { fields: frontmatter___date, order: DESC }
+														limit: 3
+													) 
 													{
 														edges {
 															node {
@@ -33,6 +36,9 @@ export default function BlogList() {
 					date={edge.node.frontmatter.date}
 					excerpt={edge.node.excerpt} />
 			))}
+			<div>
+				<Link to="/blog">Read More</Link>
+			</div>
 		</div>
 	)
 }
