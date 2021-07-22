@@ -1,5 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: 'The Coffee Blog'
-  }
+    title: 'SSV Hue Sports'
+  },
+  plugins: [
+    'gatsby-plugin-netlify-cms'
+  ]
 };
