@@ -7,7 +7,9 @@ export default function Layout({ children }) {
     <div>
       <header id={styles.header}>
         <div id={styles.inner}>
-          <h1><Link to="/">SSV Hue</Link></h1>
+          <Link to="/">
+            <img src="/logo.png" width="50px" height="50px"/>
+          </Link>
           <Link to="/blog">Blog</Link>
         </div>
       </header>
